@@ -6,7 +6,15 @@
   "scripts": {
     "test": "playwright test",
     "lint": "eslint .",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --cache"
+    ],
+    "*.{json,css,md}": "prettier --write"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +28,8 @@
     "dotenv": "^17.2.3",
     "eslint": "^10.0.2",
     "eslint-plugin-playwright": "^2.7.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1"
