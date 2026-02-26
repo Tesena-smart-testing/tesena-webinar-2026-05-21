@@ -2,6 +2,10 @@
 
 - [Instalace](#instalace)
   - [Stažení prohlížečů](#stažení-prohlížečů)
+- [Kontrola a formátování kódu](#kontrola-a-formátování-kódu)
+  - [Lintování](#lintování)
+  - [Formátování](#formátování)
+  - [pre-commit hook](#pre-commit-hook)
 - [Struktura projektu](#struktura-projektu)
   - [Playwright configurace](#playwright-configurace)
 - [Worker scope vs. test scope](#worker-scope-vs-test-scope)
@@ -34,6 +38,38 @@ Pro Playwright je potřeba stáhnout jednotlivé prohlížeče. Ty se stahují p
 ```shell
 npx playwright install
 ```
+
+## Kontrola a formátování kódu
+
+Pro zajištění kvality kódu a jednotného stylu používáme ESLint pro lintování a Prettier pro formátování. Pro automatickou kontrolu před každým commitem je nastaven pre-commit hook pomocí Husky.
+
+### Lintování
+
+Lintování může být prováděno:
+
+- automaticky, dle nastavení IDE. Je třeba mít nainstalován ESlint plugin v IDE a nastaveno automatické lintování při ukládání souboru.
+
+- manuálně přes příkaz:
+
+```shell
+npm run lint
+```
+
+- automaticky před každým commitem díky Husky pre-commit hooku.
+
+### Formátování
+
+Formátování kódu může být prováděno:
+
+- automaticky, dle nastavení IDE. Je třeba mít nainstalován Prettier plugin v IDE a nastaveno automatické formátování při ukládání souboru.
+
+- manuálně přes příkaz:
+
+```shell
+npm run format
+```
+
+- automaticky před každým commitem díky Husky pre-commit hooku.
 
 ## Struktura projektu
 
