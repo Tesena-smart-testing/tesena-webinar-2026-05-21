@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "description": "Playwright project template",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier . --write"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.57.0",
     "@types/node": "^25.0.9",
     "axios-cookiejar-support": "^6.0.5",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "eslint": "^10.0.2",
+    "eslint-plugin-playwright": "^2.7.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
   }
 }

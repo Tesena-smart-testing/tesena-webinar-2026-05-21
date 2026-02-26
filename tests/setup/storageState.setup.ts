@@ -1,25 +1,24 @@
 import { FullConfig } from "@playwright/test";
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from "node:fs";
+import path from "node:path";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
 import { env } from "../../playwright.config";
 
 export default async function createStorageStates(config: FullConfig) {
-    
-    fs.mkdirSync(path.resolve(`./.auth/${env}`), {recursive: true});
+  fs.mkdirSync(path.resolve(`./.auth/${env}`), { recursive: true });
 
-    const testUsers = getTestUsers()
-    const emptyState = {
-            cookies: [],
-            origins: []
-        }
-    for (const user of Object.keys(testUsers) as Array<keyof typeof testUsers>) {
-        const file = storagePath(user)
+  const testUsers = getTestUsers();
+  const emptyState = {
+    cookies: [],
+    origins: [],
+  };
+  for (const user of Object.keys(testUsers) as Array<keyof typeof testUsers>) {
+    const file = storagePath(user);
 
-        if (fs.existsSync(file)) {
-            fs.rmSync(file)
-        }
-
-        fs.writeFileSync(file, JSON.stringify(emptyState, null, 2))
+    if (fs.existsSync(file)) {
+      fs.rmSync(file);
     }
+
+    fs.writeFileSync(file, JSON.stringify(emptyState, null, 2));
+  }
 }

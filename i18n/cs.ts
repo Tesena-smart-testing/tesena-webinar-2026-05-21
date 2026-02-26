@@ -1,20 +1,18 @@
 import { Schema } from "./schema";
 
 export const cs: Schema = {
-    loginPage: {
-        cookies: {
-            accept: 'Souhlasím'
-        },
-        loginButton: {
-            title: 'Přihlásit'
-        }
+  loginPage: {
+    cookies: {
+      accept: "Souhlasím",
     },
-    certification: {
-        sms: {
-            loginButton: 'Přihlásit'
-        },
-        otp: {
-
-        }
-    }
+    loginButton: {
+      title: "Přihlásit",
+    },
+  },
+  certification: {
+    sms: {
+      loginButton: "Přihlásit",
+    },
+    otp: {},
+  },
 };
