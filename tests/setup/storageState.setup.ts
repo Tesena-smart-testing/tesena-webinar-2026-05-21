@@ -2,7 +2,7 @@ import { FullConfig } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
-import { env } from "../../playwright.config";
+import { env } from "../../config/environment";
 
 export default async function createStorageStates(config: FullConfig) {
   fs.mkdirSync(path.resolve(`./.auth/${env}`), { recursive: true });

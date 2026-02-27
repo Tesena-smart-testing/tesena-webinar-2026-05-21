@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
 import { test } from "../../fixtures/test.fixture";
-import { env } from "../../playwright.config";
+import { env } from "../../config/environment";
 
 test("Accept cookies", async ({ loginPage, page }) => {
   const accept = loginPage.acceptCookiesButton;

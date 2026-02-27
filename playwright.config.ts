@@ -1,21 +1,9 @@
 import dotenv from "dotenv";
+import { env } from "./config/environment";
 import { defineConfig } from "@playwright/test";
 import path from "path";
-import { ENVIRONMENTS, Environment } from "./config/environment";
 import { getTestUsers, storagePath } from "./tests/testdata/testUsers";
 import { LANGUAGES, Locale, loadLocale } from "./config/locale";
-
-/**
- * Načtení a validace testovacího prostředí ze systemové proměnné
- */
-const rawEnv = process.env.ENVIRONMENT ?? "ACC";
-export const env: Environment = (() => {
-  // Ověření hodnoty rawEnv
-  if (!ENVIRONMENTS.includes(rawEnv as Environment)) {
-    throw new Error(`Invalid environment: [${rawEnv}]`);
-  }
-  return rawEnv as Environment;
-})();
 
 /**
  * Konfigurace pro načítání env. properties
