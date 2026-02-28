@@ -5,3 +5,6 @@
 /playwright-report/
 /blob-report/
 /.auth/
+
+# ESlint cache
+.eslintcache
