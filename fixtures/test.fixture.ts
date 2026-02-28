@@ -1,13 +1,13 @@
 import { gotoPage } from "../helpers/pageFactory";
 import { loadDictionary } from "../i18n";
 import { cs } from "../i18n/cs";
-import { Schema } from "../i18n/schema";
+import type { Schema } from "../i18n/schema";
 import { Dashboard } from "../tests/pages/Dashboard";
 import { LoginPage } from "../tests/pages/login/LoginPage";
 import { test as base } from "@playwright/test";
 import {
-  TestUserKey,
-  TestUserData,
+  type TestUserKey,
+  type TestUserData,
   getTestUserData,
 } from "../tests/testdata/testUsers";
 import { locale } from "../playwright.config";

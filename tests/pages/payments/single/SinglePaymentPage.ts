@@ -1,9 +1,10 @@
-import { Page } from "@playwright/test";
-import { Texts } from "../../../../fixtures/test.fixture";
+import type { Page } from "@playwright/test";
+import type { Texts } from "../../../../fixtures/test.fixture";
 
 export class SinglePaymentPage {
   constructor(
     private readonly page: Page,
+    // @ts-expect-error -- stub: t will be used once locators are implemented
     private readonly t: Texts,
   ) {}
 

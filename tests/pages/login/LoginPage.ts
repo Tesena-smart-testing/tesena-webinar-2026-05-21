@@ -1,5 +1,5 @@
-import { Locator, Page } from "@playwright/test";
-import { Texts } from "../../../fixtures/test.fixture";
+import type { Locator, Page } from "@playwright/test";
+import type { Texts } from "../../../fixtures/test.fixture";
 import { SmsLogin } from "./components/SmsLogin";
 import { OtpLogin } from "./components/OtpLogin";
 

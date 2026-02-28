@@ -7,13 +7,13 @@ describeAsUser("paymentsTestsUser", "1IB tests", async () => {
   test(`${TestGroup.PAYMENTS} Single payment test`, async ({
     gotoSinglePaymentPage,
   }) => {
-    const _singlePaymentPage = await gotoSinglePaymentPage();
+    await gotoSinglePaymentPage();
   });
 
   // eslint-disable-next-line playwright/expect-expect
   test(`${TestGroup.PAYMENTS} Batch payment test`, async ({
     gotoBatchPaymentPage,
   }) => {
-    const _batchPaymentPage = await gotoBatchPaymentPage();
+    await gotoBatchPaymentPage();
   });
 });

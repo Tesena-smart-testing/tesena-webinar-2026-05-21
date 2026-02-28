@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import { env } from "./config/environment";
 import { defineConfig } from "@playwright/test";
-import path from "path";
+import * as path from "path";
 import { getTestUsers, storagePath } from "./tests/testdata/testUsers";
-import { LANGUAGES, Locale, loadLocale } from "./config/locale";
+import { LANGUAGES, type Locale, loadLocale } from "./config/locale";
 
 /**
  * Konfigurace pro načítání env. properties
@@ -79,7 +79,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  ...(process.env.CI ? { workers: 1 } : {}),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   globalSetup: "tests/setup/storageState.setup.ts",

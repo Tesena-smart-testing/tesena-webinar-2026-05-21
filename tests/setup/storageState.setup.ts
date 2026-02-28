@@ -1,6 +1,6 @@
-import { FullConfig } from "@playwright/test";
-import fs from "node:fs";
-import path from "node:path";
+import { type FullConfig } from "@playwright/test";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
 import { env } from "../../config/environment";
 

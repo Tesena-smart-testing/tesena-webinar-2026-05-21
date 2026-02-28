@@ -7,6 +7,6 @@ describeAsUser("accountsTestsUser", "1IB tests", async () => {
   test(`${TestGroup.ACCOUNTS} Standard account test`, async ({
     gotoAccountsPage,
   }) => {
-    const _accountsPage = await gotoAccountsPage();
+    await gotoAccountsPage();
   });
 });

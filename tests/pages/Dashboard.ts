@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import { Texts } from "../../fixtures/test.fixture";
+import type { Page } from "@playwright/test";
+import type { Texts } from "../../fixtures/test.fixture";
 import { Menu } from "./components/Menu";
 
 export class Dashboard {

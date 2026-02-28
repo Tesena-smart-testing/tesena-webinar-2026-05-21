@@ -1,10 +1,14 @@
-import { Browser } from "@playwright/test";
-import { Texts } from "../../fixtures/test.fixture";
+import type { Browser } from "@playwright/test";
+import type { Texts } from "../../fixtures/test.fixture";
 import { LoginPage } from "../pages/login/LoginPage";
-import { storagePath, TestUserData, TestUserKey } from "../testdata/testUsers";
+import {
+  storagePath,
+  type TestUserData,
+  type TestUserKey,
+} from "../testdata/testUsers";
 import { expectPage } from "../../helpers/pageFactory";
 import { Dashboard } from "../pages/Dashboard";
-import fs from "node:fs";
+import * as fs from "node:fs";
 import { SmsLogin } from "../pages/login/components/SmsLogin";
 import { OtpLogin } from "../pages/login/components/OtpLogin";
 

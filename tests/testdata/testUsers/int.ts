@@ -1,4 +1,4 @@
-import { Users } from "./schema";
+import type { Users } from "./schema";
 
 export const users: Users = {
   paymentsTestsUser: {

@@ -1,7 +1,7 @@
-import { Locale } from "../config/locale";
+import type { Locale } from "../config/locale";
 import { cs } from "./cs";
 import { en } from "./en";
-import { Schema } from "./schema";
+import type { Schema } from "./schema";
 
 export const TEXTS = {
   "cs-CZ": cs,

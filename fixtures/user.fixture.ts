@@ -1,4 +1,4 @@
-import { TestUserKey } from "../tests/testdata/testUsers";
+import type { TestUserKey } from "../tests/testdata/testUsers";
 import { test } from "./test.fixture";
 
 export function describeAsUser(
