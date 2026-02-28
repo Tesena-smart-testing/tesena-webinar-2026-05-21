@@ -11,6 +11,6 @@ export type Schema = {
     sms: {
       loginButton: string;
     };
-    otp: {};
+    otp: Record<string, never>;
   };
 };

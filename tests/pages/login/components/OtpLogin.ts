@@ -14,7 +14,7 @@ export class OtpLogin {
     return this;
   }
 
-  async confirmLogin(token: string) {
+  async confirmLogin(_token: string) {
     // Authorization
   }
 

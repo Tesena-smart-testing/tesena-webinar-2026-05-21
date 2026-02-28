@@ -4,7 +4,7 @@ import path from "node:path";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
 import { env } from "../../config/environment";
 
-export default async function createStorageStates(config: FullConfig) {
+export default async function createStorageStates(_config: FullConfig) {
   fs.mkdirSync(path.resolve(`./.auth/${env}`), { recursive: true });
 
   const testUsers = getTestUsers();

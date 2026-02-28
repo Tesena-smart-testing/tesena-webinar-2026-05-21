@@ -57,6 +57,12 @@ npm run lint
 
 - automaticky před každým commitem díky Husky pre-commit hooku.
 
+#### Ignorování proměnných s prefixem `_`
+
+Proměnné, parametry a argumenty pojmenované s prefixem `_` (např. `_config`, `_token`) jsou linterem ignorovány jako záměrně nevyužité. Toto chování je nakonfigurováno v `eslint.config.mjs` prostřednictvím pravidla `@typescript-eslint/no-unused-vars` s volbami `argsIgnorePattern`, `varsIgnorePattern` a `caughtErrorsIgnorePattern` nastavenými na `^_`.
+
+Prefix `_` se používá v situacích, kdy je proměnná nebo parametr technicky nutný (např. kvůli Playwright fixture dependency injection nebo jako stub v neimplementovaných metodách), ale jeho hodnota není přímo čtena.
+
 ### Formátování
 
 Formátování kódu může být prováděno:

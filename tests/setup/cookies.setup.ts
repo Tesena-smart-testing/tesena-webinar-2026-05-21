@@ -1,7 +1,6 @@
 import { expect } from "@playwright/test";
 import { getTestUsers, storagePath } from "../testdata/testUsers";
 import { test } from "../../fixtures/test.fixture";
-import { env } from "../../config/environment";
 
 test("Accept cookies", async ({ loginPage, page }) => {
   const accept = loginPage.acceptCookiesButton;
@@ -10,7 +9,7 @@ test("Accept cookies", async ({ loginPage, page }) => {
 
     await accept.click();
     await expect(accept).toBeHidden({ timeout: 10_000 });
-  } catch (e) {
+  } catch {
     console.log("Cookies banner not found");
   }
 

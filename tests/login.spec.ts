@@ -2,7 +2,7 @@ import { expect } from "@playwright/test";
 import { test } from "../fixtures/test.fixture";
 import { TestGroup } from "../helpers/testGroups";
 
-test.describe("Login tests", async () => {
+test.describe("Login tests", () => {
   test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login button enabling test`, async ({
     loginPage,
   }) => {

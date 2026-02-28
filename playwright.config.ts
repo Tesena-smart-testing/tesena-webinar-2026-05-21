@@ -65,7 +65,7 @@ const projectMatrix = (
  */
 const setupProject = {
   name: "setup:cookies",
-  testMatch: "**/*cookies\.setup\.ts",
+  testMatch: "**/*cookies.setup.ts",
 };
 /**
  * See https://playwright.dev/docs/test-configuration.

@@ -1,4 +1,4 @@
-import { TestUser, Users } from "./schema";
+import { Users } from "./schema";
 
 export const users: Users = {
   paymentsTestsUser: {

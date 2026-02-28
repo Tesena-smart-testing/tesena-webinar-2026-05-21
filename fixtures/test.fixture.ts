@@ -14,7 +14,7 @@ import { locale } from "../playwright.config";
 import { BatchPaymentPage } from "../tests/pages/payments/batch/BatchPaymentPage";
 import { SinglePaymentPage } from "../tests/pages/payments/single/SinglePaymentPage";
 import { AccountsPage } from "../tests/pages/accounts/AccountsPage";
-import { loginAndSaveStorageState, LoginStep } from "../tests/steps/login.step";
+import { loginAndSaveStorageState } from "../tests/steps/login.step";
 
 export type Texts = typeof cs;
 
@@ -46,7 +46,7 @@ export const test = base.extend<Fixtures, Options>({
 
   // load translations based on Locale
   texts: [
-    async ({}, use) => {
+    async (_fixtures, use) => {
       await use(loadDictionary(locale));
     },
     { scope: "worker" },
@@ -66,19 +66,31 @@ export const test = base.extend<Fixtures, Options>({
     await use(loginPage);
   },
 
-  gotoDashboard: async ({ authentication, page, texts }, use) => {
+  gotoDashboard: async (
+    { authentication: _authentication, page, texts },
+    use,
+  ) => {
     await use(() => gotoPage(page, texts, Dashboard));
   },
 
-  gotoBatchPaymentPage: async ({ authentication, page, texts }, use) => {
+  gotoBatchPaymentPage: async (
+    { authentication: _authentication, page, texts },
+    use,
+  ) => {
     await use(() => gotoPage(page, texts, BatchPaymentPage));
   },
 
-  gotoSinglePaymentPage: async ({ authentication, page, texts }, use) => {
+  gotoSinglePaymentPage: async (
+    { authentication: _authentication, page, texts },
+    use,
+  ) => {
     await use(() => gotoPage(page, texts, SinglePaymentPage));
   },
 
-  gotoAccountsPage: async ({ authentication, page, texts }, use) => {
+  gotoAccountsPage: async (
+    { authentication: _authentication, page, texts },
+    use,
+  ) => {
     await use(() => gotoPage(page, texts, AccountsPage));
   },
 });

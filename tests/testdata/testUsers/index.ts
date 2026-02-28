@@ -14,14 +14,12 @@ const USERS_BY_ENV = {
   INT2: INT_USERS,
 } as const;
 
-const TEST_USERS = USERS_BY_ENV[env];
-
 /**
  * Deklarace datových typů pro klíč a hodnotu uživatele ze schématu
  * Použitím těchto typů dále v projektu zajišťujeme automatickou kontrolu hodnot (že používáme existující klíč pro uživatele)
  */
-export type TestUserKey = keyof typeof TEST_USERS;
-export type TestUserData = (typeof TEST_USERS)[TestUserKey];
+export type TestUserKey = keyof ReturnType<typeof getTestUsers>;
+export type TestUserData = ReturnType<typeof getTestUsers>[TestUserKey];
 
 export function getTestUsers() {
   return USERS_BY_ENV[env];

@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Texts } from "../../../fixtures/test.fixture";
 
 export class Menu {
