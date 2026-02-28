@@ -71,6 +71,29 @@ npm run format
 
 - automaticky před každým commitem díky Husky pre-commit hooku.
 
+### Typechecking
+
+Aby mohl projekt využívat všechny výhody TypeScriptu, je důležité mít zapnutý typechecking. Ten nám zajišťuje kontrolu datových typů, struktury objektů a dalších aspektů kódu, které nám pomáhají předcházet chybám a psát kvalitnější kód.
+
+K tomu je třeba mít nastaven `tsconfig.json` v kořenovém adresáři projektu, který definuje konfiguraci pro TypeScript. V tomto souboru jsou nastaveny základní možnosti pro kompilaci TypeScriptu, včetně cesty k testům a dalším zdrojovým souborům.
+
+V rámci Playwright projektu není Typescript konfigurace potřeba pro kompilaci, protože Playwright kompilaci provádí sám dle své vnitřní TS konfigurace.
+
+V Playwright projektu je tedy `tsconfig.json` třeba pouze pro zajištění funkčnosti typecheckingu.
+
+Typechecking může být prováděn:
+
+- manuálně přes příkaz:
+
+```shell
+npm run typecheck
+```
+
+- silně doporučeno nastavit typechecking v IDE (např. ve VSCode, pokud má projekt instalovaný Typescript jako závislost,
+  by měl být typechecking automaticky zapnutý).
+
+- v CI/CD pipelině.
+
 ## Struktura projektu
 
 ```
