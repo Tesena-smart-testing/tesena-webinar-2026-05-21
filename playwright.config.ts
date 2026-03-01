@@ -1,9 +1,9 @@
 import * as dotenv from "dotenv";
-import { env } from "./config/environment";
+import { env } from "@/config/environment";
 import { defineConfig } from "@playwright/test";
 import * as path from "path";
-import { getTestUsers, storagePath } from "./tests/testdata/testUsers";
-import { LANGUAGES, type Locale, loadLocale } from "./config/locale";
+import { getTestUsers, storagePath } from "@/tests/testdata/testUsers";
+import { locale, type Locale } from "@/config/locale";
 
 /**
  * Konfigurace pro načítání env. properties
@@ -11,17 +11,9 @@ import { LANGUAGES, type Locale, loadLocale } from "./config/locale";
 dotenv.config({ path: path.resolve(process.cwd(), ".env"), override: true });
 dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}`) });
 
-/**
- * Konfigurace jazyka ze systemové proměnné. Defaultně čeština
- */
-const rawLocale = process.env.LOCALE ?? "cs-CZ";
-export const locale: Locale = (() => {
-  // Ověření hodnoty rawLocale
-  if (!LANGUAGES.includes(rawLocale as Locale)) {
-    throw new Error(`Invalid locale: [${rawLocale}]`);
-  }
-  return loadLocale(rawLocale);
-})();
+const rawLocale = (process.env.LOCALE || "cs-CZ") as Locale;
+const verifiedLocale = locale(rawLocale);
+process.env.LOCALE = verifiedLocale;
 
 /**
  * Nastavení prostředí pro @playwright-helper (autentizace, reporting atp.)
@@ -95,7 +87,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     headless: false,
-    locale: locale,
+    locale: verifiedLocale,
     actionTimeout: 15_000,
     navigationTimeout: 30_000,
     video: "retain-on-failure",

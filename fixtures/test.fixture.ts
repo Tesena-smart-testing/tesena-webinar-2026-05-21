@@ -10,7 +10,7 @@ import {
   type TestUserData,
   getTestUserData,
 } from "@/tests/testdata/testUsers";
-import { locale } from "../playwright.config";
+import { locale, type Locale } from "@/config/locale";
 import { BatchPaymentPage } from "@/tests/pages/payments/batch/BatchPaymentPage";
 import { SinglePaymentPage } from "@/tests/pages/payments/single/SinglePaymentPage";
 import { AccountsPage } from "@/tests/pages/accounts/AccountsPage";
@@ -46,8 +46,9 @@ export const test = base.extend<Fixtures, Options>({
 
   // load translations based on Locale
   texts: [
-    async (_fixtures, use) => {
-      await use(loadDictionary(locale));
+    // eslint-disable-next-line no-empty-pattern
+    async ({}, use) => {
+      await use(loadDictionary(locale(process.env.LOCALE as Locale)));
     },
     { scope: "worker" },
   ],
