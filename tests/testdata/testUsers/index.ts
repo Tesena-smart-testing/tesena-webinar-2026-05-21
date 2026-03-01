@@ -1,7 +1,7 @@
-import { env } from "../../../config/environment";
-import { MissingTestUserKeyError } from "../../../errors/test-data-errors";
-import { users as ACC_USERS } from "./acc";
-import { users as INT_USERS } from "./int";
+import { env } from "@/config/environment";
+import { MissingTestUserKeyError } from "@/errors/test-data-errors";
+import { users as ACC_USERS } from "@/tests/testdata/testUsers/acc";
+import { users as INT_USERS } from "@/tests/testdata/testUsers/int";
 
 /**
  * Načtení uživatelů podle testovacího prostředí.

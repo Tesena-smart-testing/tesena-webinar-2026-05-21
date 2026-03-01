@@ -1,6 +1,6 @@
 import type { Page } from "@playwright/test";
-import type { Texts } from "../../fixtures/test.fixture";
-import { Menu } from "./components/Menu";
+import type { Texts } from "@/fixtures/test.fixture";
+import { Menu } from "@/tests/pages/components/Menu";
 
 export class Dashboard {
   constructor(

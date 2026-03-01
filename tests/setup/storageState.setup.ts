@@ -1,8 +1,8 @@
 import { type FullConfig } from "@playwright/test";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getTestUsers, storagePath } from "../testdata/testUsers";
-import { env } from "../../config/environment";
+import { getTestUsers, storagePath } from "@/tests/testdata/testUsers";
+import { env } from "@/config/environment";
 
 export default async function createStorageStates(_config: FullConfig) {
   fs.mkdirSync(path.resolve(`./.auth/${env}`), { recursive: true });

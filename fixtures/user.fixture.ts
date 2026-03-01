@@ -1,5 +1,5 @@
-import type { TestUserKey } from "../tests/testdata/testUsers";
-import { test } from "./test.fixture";
+import type { TestUserKey } from "@/tests/testdata/testUsers";
+import { test } from "@/fixtures/test.fixture";
 
 export function describeAsUser(
   userKey: TestUserKey,

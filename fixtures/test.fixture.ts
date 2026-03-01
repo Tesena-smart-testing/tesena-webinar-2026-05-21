@@ -1,20 +1,20 @@
-import { gotoPage } from "../helpers/pageFactory";
-import { loadDictionary } from "../i18n";
-import { cs } from "../i18n/cs";
-import type { Schema } from "../i18n/schema";
-import { Dashboard } from "../tests/pages/Dashboard";
-import { LoginPage } from "../tests/pages/login/LoginPage";
+import { gotoPage } from "@/helpers/pageFactory";
+import { loadDictionary } from "@/i18n";
+import { cs } from "@/i18n/cs";
+import type { Schema } from "@/i18n/schema";
+import { Dashboard } from "@/tests/pages/Dashboard";
+import { LoginPage } from "@/tests/pages/login/LoginPage";
 import { test as base } from "@playwright/test";
 import {
   type TestUserKey,
   type TestUserData,
   getTestUserData,
-} from "../tests/testdata/testUsers";
+} from "@/tests/testdata/testUsers";
 import { locale } from "../playwright.config";
-import { BatchPaymentPage } from "../tests/pages/payments/batch/BatchPaymentPage";
-import { SinglePaymentPage } from "../tests/pages/payments/single/SinglePaymentPage";
-import { AccountsPage } from "../tests/pages/accounts/AccountsPage";
-import { loginAndSaveStorageState } from "../tests/steps/login.step";
+import { BatchPaymentPage } from "@/tests/pages/payments/batch/BatchPaymentPage";
+import { SinglePaymentPage } from "@/tests/pages/payments/single/SinglePaymentPage";
+import { AccountsPage } from "@/tests/pages/accounts/AccountsPage";
+import { loginAndSaveStorageState } from "@/tests/steps/login.step";
 
 export type Texts = typeof cs;
 

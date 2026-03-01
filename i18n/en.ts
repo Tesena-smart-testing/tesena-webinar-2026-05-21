@@ -1,4 +1,4 @@
-import type { Schema } from "./schema";
+import type { Schema } from "@/i18n/schema";
 
 export const en: Schema = {
   loginPage: {

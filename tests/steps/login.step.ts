@@ -1,16 +1,16 @@
 import type { Browser } from "@playwright/test";
-import type { Texts } from "../../fixtures/test.fixture";
-import { LoginPage } from "../pages/login/LoginPage";
+import type { Texts } from "@/fixtures/test.fixture";
+import { LoginPage } from "@/tests/pages/login/LoginPage";
 import {
   storagePath,
   type TestUserData,
   type TestUserKey,
-} from "../testdata/testUsers";
-import { expectPage } from "../../helpers/pageFactory";
-import { Dashboard } from "../pages/Dashboard";
+} from "@/tests/testdata/testUsers";
+import { expectPage } from "@/helpers/pageFactory";
+import { Dashboard } from "@/tests/pages/Dashboard";
 import * as fs from "node:fs";
-import { SmsLogin } from "../pages/login/components/SmsLogin";
-import { OtpLogin } from "../pages/login/components/OtpLogin";
+import { SmsLogin } from "@/tests/pages/login/components/SmsLogin";
+import { OtpLogin } from "@/tests/pages/login/components/OtpLogin";
 
 export class LoginStep {
   constructor(readonly loginPage: LoginPage) {}

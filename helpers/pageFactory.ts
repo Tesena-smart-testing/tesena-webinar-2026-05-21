@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import type { Texts } from "../fixtures/test.fixture";
+import type { Texts } from "@/fixtures/test.fixture";
 
 export type LoadablePage<T> = {
   new (page: Page, t: Texts): T;

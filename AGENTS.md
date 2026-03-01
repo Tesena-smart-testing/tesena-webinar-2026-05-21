@@ -135,18 +135,19 @@ tests/pages/components — reusable sub-page components
 - ESM (`"type": "module"` in package.json); use `import`/`export`, never `require()`.
 - Double quotes for strings, matching Prettier config.
 - Node.js built-ins use the `node:` protocol prefix: `import fs from "node:fs"`.
-- Relative paths only — no path aliases (`@/`) are configured.
+- **Path alias `@/` for project imports** — configured in `tsconfig.json` via `baseUrl` and `paths`, all project imports are relative to root.
+  - **Exception**: `playwright.config.ts` must use relative imports, since it is loaded before Playwright reads `tsconfig.json`.
 - Group imports: Playwright built-ins → project config/helpers → local types/classes.
 
 ```typescript
 import { Page, Locator } from "@playwright/test";
 import { test as base } from "@playwright/test";
 
-import { env } from "../../config/environment";
-import { gotoPage } from "../../helpers/pageFactory";
+import { env } from "@/config/environment";
+import { gotoPage } from "@/helpers/pageFactory";
 
-import type { Texts } from "../../fixtures/test.fixture";
-import { LoginPage } from "../pages/login/LoginPage";
+import type { Texts } from "@/fixtures/test.fixture";
+import { LoginPage } from "@/tests/pages/login/LoginPage";
 ```
 
 ---
@@ -173,8 +174,8 @@ Always import `test` from the custom fixture, not directly from `@playwright/tes
 
 ```typescript
 import { expect } from "@playwright/test";
-import { test } from "../fixtures/test.fixture";
-import { TestGroup } from "../helpers/testGroups";
+import { test } from "@/fixtures/test.fixture";
+import { TestGroup } from "@/helpers/testGroups";
 
 test.describe("Login tests", () => {
   test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login button enabling`, async ({
@@ -190,7 +191,7 @@ test.describe("Login tests", () => {
 For tests that need an authenticated user, use `describeAsUser()`:
 
 ```typescript
-import { describeAsUser } from "../fixtures/user.fixture";
+import { describeAsUser } from "@/fixtures/user.fixture";
 
 describeAsUser("paymentsTestsUser", "Payments suite", async () => {
   test(`${TestGroup.PAYMENTS} Single payment`, async ({

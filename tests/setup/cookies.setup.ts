@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
-import { getTestUsers, storagePath } from "../testdata/testUsers";
-import { test } from "../../fixtures/test.fixture";
+import { getTestUsers, storagePath } from "@/tests/testdata/testUsers";
+import { test } from "@/fixtures/test.fixture";
 
 test("Accept cookies", async ({ loginPage, page }) => {
   const accept = loginPage.acceptCookiesButton;

@@ -1,7 +1,7 @@
 import type { Locator, Page } from "@playwright/test";
-import type { Texts } from "../../../fixtures/test.fixture";
-import { SmsLogin } from "./components/SmsLogin";
-import { OtpLogin } from "./components/OtpLogin";
+import type { Texts } from "@/fixtures/test.fixture";
+import { SmsLogin } from "@/tests/pages/login/components/SmsLogin";
+import { OtpLogin } from "@/tests/pages/login/components/OtpLogin";
 
 export class LoginPage {
   constructor(

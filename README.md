@@ -6,6 +6,8 @@
   - [Lintování](#lintování)
   - [Formátování](#formátování)
   - [pre-commit hook](#pre-commit-hook)
+  - [Typechecking](#typechecking)
+  - [Import aliasy (@)](#import-aliasy-)
 - [Struktura projektu](#struktura-projektu)
   - [Playwright configurace](#playwright-configurace)
 - [Worker scope vs. test scope](#worker-scope-vs-test-scope)
@@ -99,6 +101,50 @@ npm run typecheck
   by měl být typechecking automaticky zapnutý).
 
 - v CI/CD pipelině.
+
+## Import aliasy (@)
+
+Pro zjednodušení importů a odstranění relativních cest (např. `../../../fixtures/test.fixture`)
+používáme path alias `@`, který představuje kořenový adresář projektu.
+
+### Konfigurace
+
+Alias je nakonfigurován v `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+Playwright od verze 1.40 tuto konfiguraci `paths` z `tsconfig.json` nativně podporuje a
+aliasy jsou tedy automaticky rozresolvovány jak při typové kontrole (`tsc`), tak při běhu testů.
+
+### Použití
+
+Místo relativních cest:
+
+```typescript
+// Relativní import — zdlouhavé a náchylné na změnu struktury
+import { LoginPage } from "../../../tests/pages/login/LoginPage";
+import type { Texts } from "../../fixtures/test.fixture";
+```
+
+Používáme absolutní alias `@/`:
+
+```typescript
+// Alias — vždy relativní ke kořeni projektu
+import { LoginPage } from "@/tests/pages/login/LoginPage";
+import type { Texts } from "@/fixtures/test.fixture";
+```
+
+Prefix `@/` je vždy relativní ke kořeni projektu, bez ohledu na to, ve které složce se
+editovaný soubor nachází.
 
 ## Struktura projektu
 

@@ -6,6 +6,12 @@
     // "outDir": "./dist",
     "noEmit": true,
 
+    // Module Resolution
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "es2015",
