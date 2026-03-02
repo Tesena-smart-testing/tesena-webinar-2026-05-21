@@ -1,8 +1,12 @@
-import { TestUserKey } from "../tests/testdata/testUsers";
-import { test } from "./test.fixture";
+import type { TestUserKey } from "@/tests/testdata/testUsers";
+import { test } from "@/fixtures/test.fixture";
 
-export function describeAsUser(userKey: TestUserKey, title: string, fn: () => void) {
-    test.describe(`@${userKey} ${title}`, () => {
-        fn();
-    })
+export function describeAsUser(
+  userKey: TestUserKey,
+  title: string,
+  fn: () => void,
+) {
+  test.describe(`@${userKey} ${title}`, () => {
+    fn();
+  });
 }
