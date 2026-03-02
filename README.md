@@ -165,6 +165,9 @@ editovaný soubor nachází.
 ├── .env					    # Nastavení proměnných sdílených napříč prostředími
 ├── .env.acc                    # Proměnné prostředí pro ACC
 ├── .env.int                    # Proměnné prostředí pro INT
+|-- eslint.config.mjs           # nastavení pro ESLint linter (obsahuje konfiguraci pro PW linting pluing)
+|-- prettier.config.mjs         # Obsahuje nastavení pro Prettier formátovač
+|-- tsconfig.json               # Nastavení pro TypeScript, důležitý pro typechecking a podporu import aliasů
 ├── package.json                # Nastavení projektu a jeho závislostí
 ├── playwright.config.ts        # Playwright konfigurace
 └── .gitignore                  # Základní nastavení pro push do GITu
