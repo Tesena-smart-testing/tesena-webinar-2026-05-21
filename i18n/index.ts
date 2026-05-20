@@ -11,3 +11,5 @@ export const TEXTS = {
 export function loadDictionary(locale: Locale) {
   return TEXTS[locale];
 }
+
+export type Texts = Schema;

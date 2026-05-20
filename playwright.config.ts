@@ -26,7 +26,6 @@ const projectMatrix = (
   grep: RegExp(`@${userKey}`),
   dependencies: ["setup:cookies"],
   use: {
-    testUserKey: userKey,
     storageState: storagePath(userKey),
   },
 }));

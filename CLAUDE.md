@@ -42,8 +42,7 @@ Supporting layers:
 
 ```
 config/          — environment.ts (env validation), locale.ts
-fixtures/        — test.fixture.ts (custom test extension), user.fixture.ts
-helpers/         — pageFactory.ts (gotoPage/expectPage), testGroups.ts
+helpers/         — testGroups.ts
 i18n/            — schema.ts, cs.ts, en.ts, index.ts (loadDictionary)
 tests/setup/     — cookies.setup.ts, storageState.setup.ts (run before user tests)
 tests/testdata/  — test user schemas + per-environment data (acc.ts, int.ts)
@@ -53,28 +52,40 @@ tests/testdata/  — test user schemas + per-environment data (acc.ts, int.ts)
 
 ## Key Patterns
 
-**Tests** — always import `test` from the custom fixture:
+**Tests** — import `test`/`expect` from `@playwright/test`. Load the i18n dictionary once per test and pass to page objects:
 
 ```typescript
-import { test } from "@/fixtures/test.fixture";
+import { test, expect } from "@playwright/test";
+import { LoginPage } from "@/tests/pages/login/LoginPage";
 import { TestGroup } from "@/helpers/testGroups";
+import { loadDictionary } from "@/i18n";
+import { locale, type Locale } from "@/config/locale";
 
-test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login button enabling`, async ({
-  loginPage,
-}) => {
-  await test.step("Login button is disabled by default", async () => {
-    await expect(loginPage.loginButton).toBeDisabled();
+test.describe("Login tests", () => {
+  test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login button enabling`, async ({
+    page,
+  }) => {
+    const t = loadDictionary(locale(process.env.LOCALE as Locale));
+    const loginPage = new LoginPage(page, t);
+    await loginPage.goto();
+    await loginPage.expectLoaded();
+
+    await test.step("Login button is disabled by default", async () => {
+      await expect(loginPage.loginButton).toBeDisabled();
+    });
   });
 });
 ```
 
-For authenticated tests use `describeAsUser()` from `@/fixtures/user.fixture`.
+For authenticated tests use a plain `test.describe` with the `@userKey` tag in the title — the Playwright project matrix routes tests to the right user project by matching that tag.
 
-**Page Objects** must implement `goto()` and `expectLoaded()` (required by `gotoPage()` factory). Locators are `get` properties returning `Locator`. No assertions, no business logic, no hardcoded text.
+**Page Objects** take `(page: Page, t: Texts)`. Locators are `get` properties returning `Locator`. Every navigable page implements `goto()` and `expectLoaded()`. Import `Texts` from `@/i18n`.
 
-**i18n** — all UI strings come from the `t: Texts` fixture. Add to `i18n/schema.ts` first, then implement in `cs.ts` and `en.ts`.
+**Steps** (`tests/steps/*.step.ts`) hold multi-step business logic and `expect()` calls. Instantiate page objects in the constructor.
 
-**Environments** — set via `ENVIRONMENT` env var (`acc`/`int`). URLs live in `.env.acc` / `.env.int`. Never hardcode URLs; use `process.env.PAGE_NAME_URL!`.
+**i18n** — `loadDictionary(locale)` from `@/i18n` returns the translation dictionary for the current locale. Add new keys to `i18n/schema.ts` first, then implement in `i18n/cs.ts` and `i18n/en.ts`.
+
+**Environments** — set via `ENVIRONMENT` env var (`acc`/`int`). URLs in `.env.acc` / `.env.int`. Use `process.env.PAGE_NAME_URL!` in Page Objects.
 
 ---
 
