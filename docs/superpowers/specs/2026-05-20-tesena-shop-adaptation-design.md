@@ -108,15 +108,22 @@ export type Users = {
 };
 ```
 
-**`acc.ts`** and **`int.ts`** — rename key, use demo credentials:
+**`acc.ts`** and **`int.ts`** — rename key, read credentials from environment variables:
 
 ```typescript
 export const users: Users = {
   shopTestsUser: {
-    email: "demo@prestashop.com",
-    password: "prestashop_demo",
+    email: process.env.SHOP_EMAIL ?? "",
+    password: process.env.SHOP_PASSWORD ?? "",
   },
 };
+```
+
+Actual credentials go in `.env` (gitignored) — **never hardcoded** in committed files:
+
+```
+SHOP_EMAIL=...
+SHOP_PASSWORD=...
 ```
 
 **`index.ts`** — update `TestUserData` / `TestUserKey` derived types to match new `Users`.
@@ -264,6 +271,6 @@ The `certification` section (SMS OTP, OTP) can be removed from schema, cs, and e
 
 ## Open Questions
 
-1. **Test credentials** — `demo@prestashop.com` / `prestashop_demo` (shared demo account, same for both environments).
+1. **Test credentials** — loaded from `SHOP_EMAIL` / `SHOP_PASSWORD` env vars. Set these in the local `.env` file (gitignored). Do not commit credentials.
 2. **Cookie banner** — The homepage cookie banner uses "Souhlasím" which matches the existing i18n key. `cookies.setup.ts` already handles it gracefully (try/catch).
 3. **Post-login redirect** — After login, PrestaShop redirects back to the originating page (not a fixed `/dashboard`). `Dashboard.expectLoaded()` currently waits for `page.waitForURL("/")` — this will work as long as login is triggered from the homepage.
