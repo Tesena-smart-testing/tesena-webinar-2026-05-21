@@ -49,8 +49,8 @@ export const test = base.extend<Fixtures, Options>({
 
   // vytvoření kontextu/page s autentizací
   authentication: [
-    async ({ browser, testUserKey, testUser, texts }, use) => {
-      await loginAndSaveStorageState(testUserKey, testUser, browser, texts);
+    async ({ browser, testUserKey, testUser }, use) => {
+      await loginAndSaveStorageState(testUserKey, testUser, browser);
       await use();
     },
     { scope: "worker" },
