@@ -1,7 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import type { Texts } from "@/fixtures/test.fixture";
-import { SmsLogin } from "@/tests/pages/login/components/SmsLogin";
-import { OtpLogin } from "@/tests/pages/login/components/OtpLogin";
+import type { Texts } from "@/i18n";
 
 export class LoginPage {
   constructor(
@@ -17,23 +15,15 @@ export class LoginPage {
     await this.usernameInput.waitFor({ state: "visible", timeout: 60_000 });
   }
 
-  get smsLoginComponent() {
-    return new SmsLogin(this.page, this.t);
-  }
-
-  get otpLoginComponent() {
-    return new OtpLogin(this.page, this.t);
-  }
-
-  get usernameInput() {
+  get usernameInput(): Locator {
     return this.page.locator("input#username");
   }
 
-  get passwordInput() {
+  get passwordInput(): Locator {
     return this.page.locator("input#password");
   }
 
-  get loginButton() {
+  get loginButton(): Locator {
     return this.page.locator(
       `//button[contains(text(), '${this.t.loginPage.loginButton.title}')]`,
     );

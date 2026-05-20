@@ -1,8 +1,15 @@
-import { expect } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { getTestUsers, storagePath } from "@/tests/testdata/testUsers";
-import { test } from "@/fixtures/test.fixture";
+import { LoginPage } from "@/tests/pages/login/LoginPage";
+import { loadDictionary } from "@/i18n";
+import { locale, type Locale } from "@/config/locale";
 
-test("Accept cookies", async ({ loginPage, page }) => {
+test("Accept cookies", async ({ page }) => {
+  const t = loadDictionary(locale(process.env.LOCALE as Locale));
+  const loginPage = new LoginPage(page, t);
+  await loginPage.goto();
+  await loginPage.expectLoaded();
+
   const accept = loginPage.acceptCookiesButton;
   try {
     await accept.waitFor({ state: "visible", timeout: 30_000 });
