@@ -7,15 +7,14 @@
     "noEmit": true,
 
     // Module Resolution
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     },
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "es2015",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "target": "esnext",
     "types": ["node"],
     // For nodejs:
@@ -25,8 +24,6 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": false,
