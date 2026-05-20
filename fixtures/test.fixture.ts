@@ -11,9 +11,6 @@ import {
   getTestUserData,
 } from "@/tests/testdata/testUsers";
 import { locale, type Locale } from "@/config/locale";
-import { BatchPaymentPage } from "@/tests/pages/payments/batch/BatchPaymentPage";
-import { SinglePaymentPage } from "@/tests/pages/payments/single/SinglePaymentPage";
-import { AccountsPage } from "@/tests/pages/accounts/AccountsPage";
 import { loginAndSaveStorageState } from "@/tests/steps/login.step";
 
 export type Texts = typeof cs;
@@ -28,9 +25,6 @@ type Options = {
 type Fixtures = {
   loginPage: LoginPage;
   gotoDashboard: () => Promise<Dashboard>;
-  gotoBatchPaymentPage: () => Promise<BatchPaymentPage>;
-  gotoSinglePaymentPage: () => Promise<SinglePaymentPage>;
-  gotoAccountsPage: () => Promise<AccountsPage>;
 };
 
 // extend Pw test fixture with custom ones
@@ -72,26 +66,5 @@ export const test = base.extend<Fixtures, Options>({
     use,
   ) => {
     await use(() => gotoPage(page, texts, Dashboard));
-  },
-
-  gotoBatchPaymentPage: async (
-    { authentication: _authentication, page, texts },
-    use,
-  ) => {
-    await use(() => gotoPage(page, texts, BatchPaymentPage));
-  },
-
-  gotoSinglePaymentPage: async (
-    { authentication: _authentication, page, texts },
-    use,
-  ) => {
-    await use(() => gotoPage(page, texts, SinglePaymentPage));
-  },
-
-  gotoAccountsPage: async (
-    { authentication: _authentication, page, texts },
-    use,
-  ) => {
-    await use(() => gotoPage(page, texts, AccountsPage));
   },
 });
