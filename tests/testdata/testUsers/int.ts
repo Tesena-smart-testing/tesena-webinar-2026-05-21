@@ -1,14 +1,8 @@
 import type { Users } from "@/tests/testdata/testUsers/schema";
 
 export const users: Users = {
-  paymentsTestsUser: {
-    loginNumber: "",
-    password: "",
-    token: "",
-  },
-  accountsTestsUser: {
-    loginNumber: "",
-    password: "",
-    token: "",
+  shopTestsUser: {
+    email: "demo@prestashop.com",
+    password: process.env.SHOP_PASSWORD ?? "",
   },
 };
