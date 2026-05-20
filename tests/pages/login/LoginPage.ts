@@ -1,7 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import type { Texts } from "@/fixtures/test.fixture";
-import { SmsLogin } from "@/tests/pages/login/components/SmsLogin";
-import { OtpLogin } from "@/tests/pages/login/components/OtpLogin";
+import type { Texts } from "@/i18n";
 
 export class LoginPage {
   constructor(
@@ -10,33 +8,23 @@ export class LoginPage {
   ) {}
 
   async goto() {
-    await this.page.goto("/", { waitUntil: "domcontentloaded" });
+    await this.page.goto("/cs/p%C5%99ihl%C3%A1sit");
   }
 
   async expectLoaded(): Promise<void> {
-    await this.usernameInput.waitFor({ state: "visible", timeout: 60_000 });
+    await this.emailInput.waitFor({ state: "visible", timeout: 60_000 });
   }
 
-  get smsLoginComponent() {
-    return new SmsLogin(this.page, this.t);
+  get emailInput(): Locator {
+    return this.page.locator("#field-email");
   }
 
-  get otpLoginComponent() {
-    return new OtpLogin(this.page, this.t);
+  get passwordInput(): Locator {
+    return this.page.locator("#field-password");
   }
 
-  get usernameInput() {
-    return this.page.locator("input#username");
-  }
-
-  get passwordInput() {
-    return this.page.locator("input#password");
-  }
-
-  get loginButton() {
-    return this.page.locator(
-      `//button[contains(text(), '${this.t.loginPage.loginButton.title}')]`,
-    );
+  get loginButton(): Locator {
+    return this.page.locator("#submit-login");
   }
 
   get acceptCookiesButton(): Locator {
