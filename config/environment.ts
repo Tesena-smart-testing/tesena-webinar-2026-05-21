@@ -1,12 +1,8 @@
-export const ENVIRONMENTS = ["INT", "INT2", "ACC", "ACC2"] as const;
+export const ENVIRONMENTS = ["TEST", "PROD"] as const;
 export type Environment = (typeof ENVIRONMENTS)[number];
 
-/**
- * Načtení a validace testovacího prostředí ze systemové proměnné
- */
-const rawEnv = process.env.ENVIRONMENT ?? "ACC";
+const rawEnv = process.env.ENVIRONMENT ?? "TEST";
 export const env: Environment = (() => {
-  // Ověření hodnoty rawEnv
   if (!ENVIRONMENTS.includes(rawEnv as Environment)) {
     throw new Error(`Invalid environment: [${rawEnv}]`);
   }
