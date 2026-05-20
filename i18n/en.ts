@@ -6,13 +6,7 @@ export const en: Schema = {
       accept: "Accept",
     },
     loginButton: {
-      title: "Login",
+      title: "Sign in",
     },
-  },
-  certification: {
-    sms: {
-      loginButton: "",
-    },
-    otp: {},
   },
 };

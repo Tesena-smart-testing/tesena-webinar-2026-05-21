@@ -6,13 +6,7 @@ export const cs: Schema = {
       accept: "Souhlasím",
     },
     loginButton: {
-      title: "Přihlásit",
+      title: "Přihlásit se",
     },
-  },
-  certification: {
-    sms: {
-      loginButton: "Přihlásit",
-    },
-    otp: {},
   },
 };
