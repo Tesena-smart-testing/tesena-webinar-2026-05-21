@@ -1,11 +1,7 @@
 import type { Locator, Page } from "@playwright/test";
-import type { Texts } from "@/i18n";
 
 export class LoginPage {
-  constructor(
-    private readonly page: Page,
-    private readonly t: Texts,
-  ) {}
+  constructor(private readonly page: Page) {}
 
   async goto() {
     const localeKey = (process.env.LOCALE ?? "cs-CZ")
@@ -28,11 +24,5 @@ export class LoginPage {
 
   get loginButton(): Locator {
     return this.page.locator("#submit-login");
-  }
-
-  get acceptCookiesButton(): Locator {
-    return this.page.getByRole("button", {
-      name: this.t.loginPage.cookies.accept,
-    });
   }
 }

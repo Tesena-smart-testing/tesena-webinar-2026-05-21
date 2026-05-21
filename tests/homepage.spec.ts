@@ -5,7 +5,7 @@ import { loadDictionary } from "@/i18n";
 import { locale, type Locale } from "@/config/locale";
 
 test.describe("Homepage tests", () => {
-  test(`${TestGroup.HOMEPAGE} ${TestGroup.NO_USER} Homepage loads with key navigation elements`, async ({
+  test(`${TestGroup.HOMEPAGE} ${TestGroup.NO_SESSION} Homepage loads with key navigation elements`, async ({
     page,
   }) => {
     const t = loadDictionary(locale(process.env.LOCALE as Locale));
