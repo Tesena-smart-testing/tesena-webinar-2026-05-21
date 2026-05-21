@@ -8,7 +8,10 @@ export class LoginPage {
   ) {}
 
   async goto() {
-    await this.page.goto("/cs/p%C5%99ihl%C3%A1sit");
+    const localeKey = (process.env.LOCALE ?? "cs-CZ")
+      .replace("-", "_")
+      .toUpperCase();
+    await this.page.goto(process.env[`LOGIN_PAGE_URL_${localeKey}`]!);
   }
 
   async expectLoaded(): Promise<void> {
