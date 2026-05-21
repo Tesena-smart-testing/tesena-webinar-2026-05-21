@@ -7,6 +7,10 @@ export const en: Schema = {
     },
     authErrorAlert: "Authentication failed.",
   },
+  searchResultsPage: {
+    heading: "Search results",
+    searchInput: "Search our catalog",
+  },
   registrationPage: {
     heading: "Create an account",
     saveButton: "Save",

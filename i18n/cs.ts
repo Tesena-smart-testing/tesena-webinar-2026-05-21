@@ -7,6 +7,10 @@ export const cs: Schema = {
     },
     authErrorAlert: "Ověření se nezdařilo",
   },
+  searchResultsPage: {
+    heading: "Výsledek hledání",
+    searchInput: "Hledat v katalogu",
+  },
   registrationPage: {
     heading: "Registrovat",
     saveButton: "Uložit",
