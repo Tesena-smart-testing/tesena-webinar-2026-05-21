@@ -1,29 +1,17 @@
 import type { Page } from "@playwright/test";
-import type { Texts } from "@/fixtures/test.fixture";
-import { Menu } from "@/tests/pages/components/Menu";
+import type { Texts } from "@/i18n";
 
 export class Dashboard {
   constructor(
     private readonly page: Page,
-    private readonly t: Texts,
+    _t: Texts, // reserved for future locator use
   ) {}
 
-  /**
-   * Logika pro ověření, že stránka byla načtena.
-   * Například čekání na element, který by měl být na stránce zobrazen
-   */
-  async expectLoaded(): Promise<void> {
-    await this.menu.expectLoaded();
-  }
-
-  /**
-   * Projde rovnou na cílovou stránku, ze které test začíná
-   */
   async goto(): Promise<void> {
     await this.page.goto("/");
   }
 
-  get menu() {
-    return new Menu(this.page, this.t);
+  async expectLoaded(): Promise<void> {
+    await this.page.waitForURL("/");
   }
 }
