@@ -8,25 +8,26 @@ export class LoginPage {
   ) {}
 
   async goto() {
-    await this.page.goto("/", { waitUntil: "domcontentloaded" });
+    const localeKey = (process.env.LOCALE ?? "cs-CZ")
+      .replace("-", "_")
+      .toUpperCase();
+    await this.page.goto(process.env[`LOGIN_PAGE_URL_${localeKey}`]!);
   }
 
   async expectLoaded(): Promise<void> {
-    await this.usernameInput.waitFor({ state: "visible", timeout: 60_000 });
+    await this.emailInput.waitFor({ state: "visible", timeout: 60_000 });
   }
 
-  get usernameInput(): Locator {
-    return this.page.locator("input#username");
+  get emailInput(): Locator {
+    return this.page.locator("#field-email");
   }
 
   get passwordInput(): Locator {
-    return this.page.locator("input#password");
+    return this.page.locator("#field-password");
   }
 
   get loginButton(): Locator {
-    return this.page.locator(
-      `//button[contains(text(), '${this.t.loginPage.loginButton.title}')]`,
-    );
+    return this.page.locator("#submit-login");
   }
 
   get acceptCookiesButton(): Locator {

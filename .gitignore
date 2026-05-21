@@ -8,3 +8,6 @@
 
 # ESlint cache
 .eslintcache
+
+# Screenshot artifacts
+screenshot-*.png

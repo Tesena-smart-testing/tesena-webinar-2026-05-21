@@ -7,10 +7,6 @@ export type Schema = {
       title: string;
     };
   };
-  certification: {
-    sms: {
-      loginButton: string;
-    };
-    otp: Record<string, never>;
-  };
 };
+
+export type Texts = Schema;

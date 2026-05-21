@@ -3,4 +3,5 @@ export const TestGroup = {
   PAYMENTS: "@payments",
   LOGIN: "@login",
   NO_USER: "@nouser",
+  HOMEPAGE: "@homepage",
 } as const;

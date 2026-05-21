@@ -8,23 +8,12 @@ import {
 import { Dashboard } from "@/tests/pages/Dashboard";
 import { loadDictionary } from "@/i18n";
 import { locale, type Locale } from "@/config/locale";
+
 export class LoginStep {
   constructor(readonly loginPage: LoginPage) {}
 
-  async loginByOtp(
-    username: string,
-    password: string,
-    _token: string,
-  ): Promise<void> {
-    await this.fillCredentialsClickLogin(username, password);
-    // OTP confirmation stub — implement once real OTP locators are known
-  }
-
-  async fillCredentialsClickLogin(
-    username: string,
-    password: string,
-  ): Promise<void> {
-    await this.loginPage.usernameInput.fill(username);
+  async loginByEmail(email: string, password: string): Promise<void> {
+    await this.loginPage.emailInput.fill(email);
     await this.loginPage.passwordInput.fill(password);
     await this.loginPage.loginButton.click();
   }
@@ -43,11 +32,7 @@ export async function loginAndSaveStorageState(
     await loginPage.goto();
 
     const loginStep = new LoginStep(loginPage);
-    await loginStep.loginByOtp(
-      testUser.loginNumber,
-      testUser.password,
-      testUser.token,
-    );
+    await loginStep.loginByEmail(testUser.email, testUser.password);
 
     const dashboard = new Dashboard(page, t);
     await dashboard.expectLoaded();

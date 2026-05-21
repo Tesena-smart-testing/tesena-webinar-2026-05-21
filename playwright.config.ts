@@ -6,7 +6,9 @@ import { getTestUsers, storagePath } from "@/tests/testdata/testUsers";
 import { locale, type Locale } from "@/config/locale";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env"), override: true });
-dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}`) });
+dotenv.config({
+  path: path.resolve(process.cwd(), `.env.${env.toLowerCase()}`),
+});
 
 const rawLocale = (process.env.LOCALE || "cs-CZ") as Locale;
 const verifiedLocale = locale(rawLocale);
