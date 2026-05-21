@@ -1,4 +1,5 @@
 import type { Browser } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { LoginPage } from "@/tests/pages/login/LoginPage";
 import {
   storagePath,
@@ -8,6 +9,7 @@ import {
 import { Dashboard } from "@/tests/pages/Dashboard";
 import { loadDictionary } from "@/i18n";
 import { locale, type Locale } from "@/config/locale";
+import type { Texts } from "@/i18n";
 
 export class LoginStep {
   constructor(readonly loginPage: LoginPage) {}
@@ -20,6 +22,16 @@ export class LoginStep {
 
   async verifyLoginSuccess(dashboard: Dashboard): Promise<void> {
     await dashboard.expectLoaded();
+  }
+
+  async verifyLoginFailure(t: Texts): Promise<void> {
+    await expect(
+      this.loginPage.errorAlert,
+      "Authentication error alert should be visible after failed login",
+    ).toBeVisible();
+    await expect(this.loginPage.errorAlert).toContainText(
+      t.loginPage.authErrorAlert,
+    );
   }
 }
 

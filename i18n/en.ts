@@ -5,5 +5,6 @@ export const en: Schema = {
     loginButton: {
       title: "Sign in",
     },
+    authErrorAlert: "Authentication failed.",
   },
 };

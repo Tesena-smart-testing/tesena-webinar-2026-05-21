@@ -25,4 +25,8 @@ export class LoginPage {
   get loginButton(): Locator {
     return this.page.locator("#submit-login");
   }
+
+  get errorAlert(): Locator {
+    return this.page.locator(".alert.alert-danger");
+  }
 }
