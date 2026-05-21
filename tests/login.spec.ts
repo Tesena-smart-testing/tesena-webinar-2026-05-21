@@ -28,4 +28,43 @@ test.describe("Login tests", () => {
       await loginStep.verifyLoginSuccess(dashboard);
     });
   });
+
+  test(`${TestGroup.LOGIN} ${TestGroup.NO_SESSION} Login fails with wrong password`, async ({
+    page,
+  }) => {
+    const t = loadDictionary(locale(process.env.LOCALE as Locale));
+    const loginPage = new LoginPage(page);
+    const loginStep = new LoginStep(loginPage);
+    const user = getTestUserData("shopTestsUser");
+
+    await loginPage.goto();
+    await loginPage.expectLoaded();
+
+    await test.step("User submits valid email with an incorrect password", async () => {
+      await loginStep.loginByEmail(user.email, "WrongPassword123!");
+    });
+
+    await test.step("Authentication error alert is displayed", async () => {
+      await loginStep.verifyLoginFailure(t);
+    });
+  });
+
+  test(`${TestGroup.LOGIN} ${TestGroup.NO_SESSION} Login fails with non-existent email`, async ({
+    page,
+  }) => {
+    const t = loadDictionary(locale(process.env.LOCALE as Locale));
+    const loginPage = new LoginPage(page);
+    const loginStep = new LoginStep(loginPage);
+
+    await loginPage.goto();
+    await loginPage.expectLoaded();
+
+    await test.step("User submits an email address that is not registered", async () => {
+      await loginStep.loginByEmail("nonexistent@example.com", "AnyPassword1!");
+    });
+
+    await test.step("Authentication error alert is displayed", async () => {
+      await loginStep.verifyLoginFailure(t);
+    });
+  });
 });

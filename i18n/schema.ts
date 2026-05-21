@@ -3,6 +3,7 @@ export type Schema = {
     loginButton: {
       title: string;
     };
+    authErrorAlert: string;
   };
 };
 

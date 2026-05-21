@@ -5,5 +5,6 @@ export const cs: Schema = {
     loginButton: {
       title: "Přihlásit se",
     },
+    authErrorAlert: "Ověření se nezdařilo",
   },
 };
