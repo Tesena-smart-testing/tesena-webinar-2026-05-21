@@ -26,16 +26,10 @@ const projectMatrix = (
   name: `${userKey}`,
   workers: 1,
   grep: RegExp(`@${userKey}`),
-  dependencies: ["setup:cookies"],
   use: {
     storageState: storagePath(userKey),
   },
 }));
-
-const setupProject = {
-  name: "setup:cookies",
-  testMatch: "**/*cookies.setup.ts",
-};
 
 export default defineConfig({
   testDir: "./tests",
@@ -62,11 +56,9 @@ export default defineConfig({
     timeout: 15_000,
   },
   projects: [
-    setupProject,
     {
       name: `No user tests`,
-      grep: RegExp(`@nouser`),
-      dependencies: ["setup:cookies"],
+      grep: RegExp(`@nosession`),
       use: {
         storageState: storagePath("nouser"),
       },

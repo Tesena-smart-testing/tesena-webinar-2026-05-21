@@ -64,7 +64,7 @@ import { loadDictionary } from "@/i18n";
 import { locale, type Locale } from "@/config/locale";
 
 test.describe("Login tests", () => {
-  test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login button enabling`, async ({
+  test(`${TestGroup.LOGIN} ${TestGroup.NO_SESSION} Login button enabling`, async ({
     page,
   }) => {
     const t = loadDictionary(locale(process.env.LOCALE as Locale));

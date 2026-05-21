@@ -1,37 +1,31 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { LoginPage } from "@/tests/pages/login/LoginPage";
+import { Dashboard } from "@/tests/pages/Dashboard";
+import { LoginStep } from "@/tests/steps/login.step";
 import { TestGroup } from "@/helpers/testGroups";
 import { loadDictionary } from "@/i18n";
 import { locale, type Locale } from "@/config/locale";
+import { getTestUserData } from "@/tests/testdata/testUsers";
 
 test.describe("Login tests", () => {
-  test(`${TestGroup.LOGIN} ${TestGroup.NO_USER} Login form elements`, async ({
+  test(`${TestGroup.LOGIN} ${TestGroup.NO_SESSION} Successful login with valid credentials`, async ({
     page,
   }) => {
     const t = loadDictionary(locale(process.env.LOCALE as Locale));
-    const loginPage = new LoginPage(page, t);
+    const loginPage = new LoginPage(page);
+    const dashboard = new Dashboard(page, t);
+    const loginStep = new LoginStep(loginPage);
+    const user = getTestUserData("shopTestsUser");
+
     await loginPage.goto();
     await loginPage.expectLoaded();
 
-    await test.step("Login button is visible and enabled by default", async () => {
-      await expect(loginPage.loginButton).toBeVisible();
-      await expect(loginPage.loginButton).toBeEnabled();
+    await test.step("User fills in valid credentials and submits the login form", async () => {
+      await loginStep.loginByEmail(user.email, user.password);
     });
 
-    await test.step("Login button is enabled when only email is filled in", async () => {
-      await loginPage.emailInput.fill("test@example.com");
-      await expect(loginPage.loginButton).toBeEnabled();
-    });
-
-    await test.step("Login button is enabled when only password is filled in", async () => {
-      await loginPage.emailInput.clear();
-      await loginPage.passwordInput.fill("password");
-      await expect(loginPage.loginButton).toBeEnabled();
-    });
-
-    await test.step("Login button is enabled when email and password filled in", async () => {
-      await loginPage.emailInput.fill("test@example.com");
-      await expect(loginPage.loginButton).toBeEnabled();
+    await test.step("User is redirected to the homepage after successful login", async () => {
+      await loginStep.verifyLoginSuccess(dashboard);
     });
   });
 });

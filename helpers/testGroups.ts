@@ -2,6 +2,6 @@ export const TestGroup = {
   ACCOUNTS: "@accounts",
   PAYMENTS: "@payments",
   LOGIN: "@login",
-  NO_USER: "@nouser",
+  NO_SESSION: "@nosession",
   HOMEPAGE: "@homepage",
 } as const;

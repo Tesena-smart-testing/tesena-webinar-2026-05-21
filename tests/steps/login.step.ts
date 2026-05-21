@@ -17,6 +17,10 @@ export class LoginStep {
     await this.loginPage.passwordInput.fill(password);
     await this.loginPage.loginButton.click();
   }
+
+  async verifyLoginSuccess(dashboard: Dashboard): Promise<void> {
+    await dashboard.expectLoaded();
+  }
 }
 
 export async function loginAndSaveStorageState(
@@ -28,7 +32,7 @@ export async function loginAndSaveStorageState(
   const context = await browser.newContext();
   const page = await context.newPage();
   try {
-    const loginPage = new LoginPage(page, t);
+    const loginPage = new LoginPage(page);
     await loginPage.goto();
 
     const loginStep = new LoginStep(loginPage);

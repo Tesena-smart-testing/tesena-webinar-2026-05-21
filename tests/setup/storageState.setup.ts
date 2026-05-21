@@ -21,4 +21,6 @@ export default async function createStorageStates(_config: FullConfig) {
 
     fs.writeFileSync(file, JSON.stringify(emptyState, null, 2));
   }
+
+  fs.writeFileSync(storagePath("nouser"), JSON.stringify(emptyState, null, 2));
 }
