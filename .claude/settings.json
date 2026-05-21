@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$d=($input|Out-String)|ConvertFrom-Json; $f=$d.tool_input.file_path; if($f -match '\\.(ts|js|mjs)$'){ & npx prettier --write \"$f\" --ignore-unknown 2>$null }",
+            "timeout": 30,
+            "statusMessage": "Formatting..."
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": [
+      "Bash(git push origin main)",
+      "Bash(git push origin master)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
+    ]
+  }
+}
