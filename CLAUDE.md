@@ -8,6 +8,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## Git Workflow
+
+**Branch naming** — use `feat/<kebab-case-description>` where the description reflects the actual content, e.g. `feat/positive-login-test` or `feat/remove-cookies-setup`. Never use generic names like `feat/changes` or `feat/update`.
+
+**Finishing a branch** — when work on a branch is complete:
+
+1. Run `npm run typecheck && npm run lint` to verify no errors.
+2. Commit all changes, push the branch, and create a PR automatically — do **not** ask which option to choose.
+3. The PR title must describe the actual content (same rule as branch names).
+4. After creating the PR, present the URL and ask the user to review it.
+
+---
+
 ## Commands
 
 ```bash
@@ -46,7 +59,7 @@ Supporting layers:
 config/          — environment.ts (env validation), locale.ts
 helpers/         — testGroups.ts
 i18n/            — schema.ts, cs.ts, en.ts, index.ts (loadDictionary)
-tests/setup/     — cookies.setup.ts, storageState.setup.ts (run before user tests)
+tests/setup/     — storageState.setup.ts (global setup, creates auth state files)
 tests/testdata/  — test user schemas + per-environment data (acc.ts, int.ts)
 ```
 
@@ -68,7 +81,7 @@ test.describe("Login tests", () => {
     page,
   }) => {
     const t = loadDictionary(locale(process.env.LOCALE as Locale));
-    const loginPage = new LoginPage(page, t);
+    const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.expectLoaded();
 
@@ -121,10 +134,10 @@ When a locator uses user-visible text, always pull the string from the i18n dict
 
 ```typescript
 // Good
-this.page.getByRole("button", { name: this.t.loginPage.cookies.accept });
+this.page.getByRole("button", { name: this.t.loginPage.loginButton.title });
 
 // Bad — hardcoded string breaks on locale switch
-this.page.getByRole("button", { name: "Souhlasím" });
+this.page.getByRole("button", { name: "Přihlásit se" });
 ```
 
 ### Assertion strategy
