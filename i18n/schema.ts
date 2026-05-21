@@ -17,6 +17,10 @@ export type Schema = {
     customerPrivacyCheckboxLabel: string;
     duplicateEmailError: string;
   };
+  searchResultsPage: {
+    heading: string;
+    searchInput: string;
+  };
 };
 
 export type Texts = Schema;

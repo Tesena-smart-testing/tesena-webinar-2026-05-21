@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import type { Texts } from "@/i18n";
 
 export class Dashboard {
@@ -12,6 +12,10 @@ export class Dashboard {
   }
 
   async expectLoaded(): Promise<void> {
-    await this.page.waitForURL("/");
+    await this.logo.waitFor({ state: "visible", timeout: 30_000 });
+  }
+
+  get logo(): Locator {
+    return this.page.locator(".logo");
   }
 }

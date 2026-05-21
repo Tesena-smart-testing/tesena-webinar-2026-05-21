@@ -8,7 +8,11 @@ export class HomePage {
   ) {}
 
   async goto(): Promise<void> {
-    await this.page.goto("/");
+    const localeKey = (process.env.LOCALE ?? "cs-CZ")
+      .replace("-", "_")
+      .toUpperCase();
+    const url = process.env[`HOME_PAGE_URL_${localeKey}`] ?? "/";
+    await this.page.goto(url);
   }
 
   async expectLoaded(): Promise<void> {

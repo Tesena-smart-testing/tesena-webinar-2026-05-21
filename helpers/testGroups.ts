@@ -5,4 +5,5 @@ export const TestGroup = {
   NO_SESSION: "@nosession",
   HOMEPAGE: "@homepage",
   REGISTRATION: "@registration",
+  SEARCH: "@search",
 } as const;
