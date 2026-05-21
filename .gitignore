@@ -5,6 +5,10 @@
 /playwright-report/
 /blob-report/
 /.auth/
+/.playwright-cli/
+
+# Local environment overrides (passwords, secrets)
+.env.local
 
 # ESlint cache
 .eslintcache
