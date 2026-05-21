@@ -7,4 +7,18 @@ export const en: Schema = {
     },
     authErrorAlert: "Authentication failed.",
   },
+  registrationPage: {
+    heading: "Create an account",
+    saveButton: "Save",
+    passwordShowButton: "Show",
+    firstNameLabel: "First name",
+    lastNameLabel: "Last name",
+    emailLabel: "Email",
+    passwordLabel: "Password input",
+    termsCheckboxLabel:
+      "I agree to the terms and conditions and the privacy policy",
+    customerPrivacyCheckboxLabel: "Customer data privacy",
+    duplicateEmailError:
+      "The email is already used, please choose another one or sign in",
+  },
 };
