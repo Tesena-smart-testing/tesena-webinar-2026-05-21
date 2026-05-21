@@ -1,11 +1,9 @@
 import { env } from "@/config/environment";
 import { MissingTestUserKeyError } from "@/errors/test-data-errors";
 import { users as TEST_USERS } from "@/tests/testdata/testUsers/acc";
-import { users as PROD_USERS } from "@/tests/testdata/testUsers/int";
 
 const USERS_BY_ENV = {
   TEST: TEST_USERS,
-  PROD: PROD_USERS,
 } as const;
 
 export type TestUserKey = keyof ReturnType<typeof getTestUsers>;

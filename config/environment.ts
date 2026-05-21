@@ -1,4 +1,5 @@
-export const ENVIRONMENTS = ["TEST", "PROD"] as const;
+export const ENVIRONMENTS = ["TEST"] as const;
+
 export type Environment = (typeof ENVIRONMENTS)[number];
 
 const rawEnv = process.env.ENVIRONMENT ?? "TEST";
